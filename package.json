@@ -1,0 +1,38 @@
+{
+  "name": "Sqlite3Demo",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@craftzdog/pouchdb-core-react-native": "^7.0.0",
+    "@craftzdog/pouchdb-replication-react-native": "^7.0.0",
+    "base-64": "^0.1.0",
+    "events": "^3.0.0",
+    "pouchdb-adapter-http": "^7.0.0",
+    "pouchdb-adapter-react-native-sqlite": "^2.0.0",
+    "pouchdb-mapreduce": "^7.0.0",
+    "react": "16.8.3",
+    "react-native": "0.59.1",
+    "react-native-sqlite-2": "^2.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/runtime": "^7.3.4",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.5.0",
+    "eslint": "^5.15.3",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "jest": "^24.5.0",
+    "metro-react-native-babel-preset": "^0.53.1",
+    "prettier": "^1.16.4",
+    "react-test-renderer": "16.8.3"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
