@@ -1,15 +1,40 @@
 A Demo for Running PouchDB on React Native with SQlite3
 ====================================================
 
+## Run Instructions
+
+Clone the repo and run the following commands in the project root directory:
+
+    npm i
+    npm start
+
+Then open a separate terminal window and run the following in the project root directory:
+
+    react-native run-ios
+
+or
+
+    react-native run-android
+
+This will open a device emulator to the demo app.
+
+Click "Run Demo" at the top of the device emulator screen. This will create a PouchDB instance and write and read a basic document with an attachment.
+
+### CouchDB Synchronization
+
+If you want to run with CouchDB synchronization, uncomment the relevant code in the `populateDatabase` in App.js and replace `YOUR_SERVER` with your server URL or IP address.
+
+## Background
+
 Please read [this blogpost](https://dev.to/craftzdog/hacking-pouchdb-to-use-on-react-native-1gjh).
 
-## How I hacked PouchDB
+### How I hacked PouchDB
 
 To get it to work on React Native with attachments support, we need to avoid calling `FileReader.readAsArrayBuffer` from PouchDB core modules since RN does not support it yet.
 That means we always process attachments in Base64 instead of `Blob`.
 It can be done with [a few lines of code hacks](https://github.com/craftzdog/pouchdb-react-native/commit/78de4baad85c30d8dc41e0609cff894d44cc6d33).
 
-### Where `readAsArrayBuffer` is called
+#### Where `readAsArrayBuffer` is called
 
 PouchDB tries to calclulate MD5 digest for every document, which needs to call `readAsArrayBuffer`.
 
@@ -58,7 +83,7 @@ This function is called from `pouchdb-md5/lib/index-browser.js`:
 
 Well, how to avoid that?
 
-### Storing Attachments
+#### Storing Attachments
 
 Disable `binary` option of `getAttachment` method in `pouchdb-core/src/adapter.js` like so:
 
@@ -74,7 +99,7 @@ Disable `binary` option of `getAttachment` method in `pouchdb-core/src/adapter.j
 
 With this change, you will always get attachments encoded in base64.
 
-### Pull Replication
+#### Pull Replication
 
 We have to convert blob to base64 when fetching attachments from remote database in `pouchdb-replication/lib/index.js` like so:
 
