@@ -18,6 +18,9 @@ export default class ReactNativeSQLite2Test extends Component {
   }
 
   addLog(msg) {
+    if(typeof msg === 'object') {
+      msg = JSON.stringify(msg);
+    }
     console.log(msg)
     const { progress } = this.state
     this.setState({
@@ -72,7 +75,7 @@ export default class ReactNativeSQLite2Test extends Component {
         _attachments: {
           'test.txt': {
             content_type: 'text/plain',
-            data: 'aGVsbG8sIHdvcmxk'
+            data: 'aGVsbG8sIHdvcmxk' // hello, world
           }
         }
       })
@@ -103,6 +106,8 @@ export default class ReactNativeSQLite2Test extends Component {
       this.remoteDB = new PouchDB(
         'http://YOUR_SERVER:5984/react-native-push-test'
       )
+      this.addLog("Fetching remote DB info...");
+      await this.remoteDB.info().then(info => this.addLog(info));
       db.sync(this.remoteDB, { live: true }).on('error', this.errorCB)
       */
 
