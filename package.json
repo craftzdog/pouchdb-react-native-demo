@@ -15,7 +15,7 @@
     "pouchdb-adapter-react-native-sqlite": "^2.0.0",
     "pouchdb-mapreduce": "^7.0.0",
     "react": "16.8.3",
-    "react-native": "0.59.1",
+    "react-native": "0.59.9",
     "react-native-sqlite-2": "^2.0.0"
   },
   "devDependencies": {
